@@ -21,6 +21,7 @@ const App: React.FC = () => {
   // Scroll spy functionality
   // Scroll spy functionality
   useEffect(() => {
+    document.title = "Safna Yuliani"
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
     
