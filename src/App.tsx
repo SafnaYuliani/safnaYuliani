@@ -10,13 +10,11 @@ import mobile from './assets/img/mobile.png'
 import { MdEmail } from "react-icons/md";
 import { FaLinkedinIn } from "react-icons/fa";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home');
-  const sections = ['home', 'about', 'experience', 'projects', 'contact'];
-  const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
   // Scroll spy functionality
   // Scroll spy functionality
