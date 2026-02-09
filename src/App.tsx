@@ -9,85 +9,48 @@ import db from './assets/img/DB.png'
 import mobile from './assets/img/mobile.png'
 import { MdEmail } from "react-icons/md";
 import { FaLinkedinIn } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
-import React, { useState, useEffect } from 'react';
+function App() {
+  const [activeSection, setActiveSection] = useState("home");
 
-
-const App: React.FC = () => {
-  const [activeSection, setActiveSection] = useState('home');
-
-  // Scroll spy functionality
-  // Scroll spy functionality
   useEffect(() => {
-    document.title = "Safna Yuliani"
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    const handleScroll = () => {
-      let currentSection = '';
-      
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.clientHeight;
-        const scrollPosition = window.scrollY;
-        
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          currentSection = section.getAttribute('id') || '';
-        }
-      });
-      
-      setActiveSection(currentSection);
-      
-      // Update active class on nav links
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-          link.classList.add('active');
-        }
-      });
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    document.title = "Safna Yuliani";
+
+    const sections = document.querySelectorAll("section");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
   }, []);
 
-  // Smooth scrolling for navigation
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    e.preventDefault();
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      window.scrollTo({
-        top: targetElement.offsetTop - 80,
-        behavior: 'smooth'
-      });
-    }
-  };
   
 
   return (
     <div className="font-sans text-gray-800">
-      {/* Navigation */}
-      <nav className="flex justify-between items-center p-4 md:p-8 fixed w-full bg-white z-50 shadow-sm">
-        <div className="logonama"><strong>Safna Yuliani</strong></div>
-        <ul className="flex list-none m-0 p-0 gap-6 md:gap-8">
-          {['home', 'about', 'experience', 'projects', 'contact'].map((section) => (
-            <li key={section}>
-              <a
-                href={`#${section}`}
-                className={`nav-link relative py-2 after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-0.5 after:bg-indigo-600 after:transition-all after:duration-300 hover:after:w-full ${
-                  activeSection === section ? 'after:w-full text-indigo-600 font-medium' : ''
-                }`}
-                onClick={(e) => handleNavClick(e, section)}
-              >
-                {section.charAt(0).toUpperCase() + section.slice(1)}
-              </a>
-            </li>
-          ))}
-        </ul>
+      {/*Navigation */}
+      <nav style={{display: "flex", justifyContent: "space-between", alignItems: "center", padding: "1rem 2rem"}}>
+          <div className="logonama"><strong>Safna Yuliani</strong></div>
+          <div style={{margin: "0", padding: "0", gap: "1.5rem" }}>
+            <a href="#home" className={activeSection === "home" ? "active" : ""}>Home</a>
+            <a href="#about" className={activeSection === "about" ? "active" : ""}>About</a>
+            <a href="#experience" className={activeSection === "experience" ? "active" : ""}>Experience</a>
+            <a href="#projects" className={activeSection === "projects" ? "active" : ""}>Projects</a>
+            <a href="#contact" className={activeSection === "contact" ? "active" : ""}>Contact</a>
+          </div>
       </nav>
 
       {/* Hero Section */}
@@ -159,14 +122,15 @@ const App: React.FC = () => {
                         <p><b>Impact:</b> Delivered a clear MVP roadmap and supported initial adoption by a corporate client.</p>
                 </div>
             </div>
-            <div className="experience-images">
-                <img src={fotosyn}/>
-                <img src={nat} alt="Work Image 3"/>
-            </div>
-        </div>
+              <div className="experience-images">
+                <img  src={fotosyn} alt="synapsis"/>
+                <img src={nat} alt="nat"/>                
+              </div>            
+          </div>
         <div className="experience-circle"></div>
         <div className="experience-circle-2"></div>
     </section>
+    
 
 
       {/* Project 1 Section */}
@@ -264,6 +228,6 @@ const App: React.FC = () => {
       </footer>
     </div>
   );
-};
+}
 
-export default App;
+export default App
