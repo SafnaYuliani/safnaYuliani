@@ -7,6 +7,8 @@ import mbanking from './assets/img/banking.png'
 import fotosyn from './assets/img/fotosyn.jpeg'
 import db from './assets/img/DB.png'
 import mobile from './assets/img/mobile.png'
+import DM1 from './assets/img/DM1.png'
+import DM2 from './assets/img/DM2.png'
 import { MdEmail } from "react-icons/md";
 import { FaLinkedinIn } from "react-icons/fa";
 import { useEffect, useState } from "react";
@@ -187,6 +189,68 @@ function App() {
         </div>
         <div className="project-circle"></div>
         <div className="project-circle-2"></div>
+    </section>
+
+
+{/* Project 4 Section  */}
+    <section id="projects" className="project">
+      <div className="container">
+        <h2 className="project-title">
+          Digital Ordering System for Cookies UMKM
+        </h2>
+
+        <div className="project-content">
+          <div className="project-images">
+            <img
+              style={{
+                width: "100%",
+                height: "auto",
+                marginTop: "auto",
+                marginBottom: "auto",
+              }}
+              src={DM1}
+              alt="Digital ordering system preview 1"
+            />
+
+            <img
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
+              src={DM2}
+              alt="Digital ordering system preview 2"
+            />
+          </div>
+
+          <div className="project-text">
+            <p>
+              This self-initiated project was designed to support small businesses
+              (UMKM) in managing cookie orders more efficiently. I initiated the
+              system design and translated business needs into functional features
+              to simplify the order recap process for business owners.
+            </p>
+
+            <p>
+              The system enables customers to place orders while automatically
+              calculating the total purchase amount. For UMKM owners, order data is
+              updated in real time and can be exported into Excel format, allowing
+              easier order tracking and sales monitoring.
+            </p>
+
+            <p><b>Outcome:</b></p>
+            <ul>
+              <li>Reduced manual order recording and minimized human error</li>
+              <li>Improved efficiency through real-time order updates</li>
+              <li>Enabled faster sales reporting via Excel export</li>
+              <li>Enhanced customer experience with automatic total calculation</li>
+              <li>Helped UMKM owners focus more on core business activities</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className="project-circle"></div>
+      <div className="project-circle-2"></div>
     </section>
 
       {/* Contact Section */}
